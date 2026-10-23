@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Eagle Credit — Field Collection</title>
+    <!-- Polyfill for crypto.randomUUID on Android 7 (Chrome 53 WebView) -->
+    <script>
+      if (typeof window !== 'undefined') {
+        if (!window.crypto) {
+          window.crypto = {};
+        }
+        if (!window.crypto.randomUUID) {
+          window.crypto.randomUUID = function() {
+            var bytes = new Uint8Array(16);
+            if (window.crypto.getRandomValues) {
+              window.crypto.getRandomValues(bytes);
+            } else {
+              for (var i = 0; i < 16; i++) {
+                bytes[i] = Math.floor(Math.random() * 256);
+              }
+            }
+            bytes[6] = (bytes[6] & 0x0f) | 0x40; // Version 4
+            bytes[8] = (bytes[8] & 0x3f) | 0x80; // Variant 10
+            var hex = [];
+            for (var j = 0; j < 16; j++) {
+              hex.push((bytes[j] < 16 ? '0' : '') + bytes[j].toString(16));
+            }
+            return (
+              hex.slice(0, 4).join('') + '-' +
+              hex.slice(4, 6).join('') + '-' +
+              hex.slice(6, 8).join('') + '-' +
+              hex.slice(8, 10).join('') + '-' +
+              hex.slice(10, 16).join('')
+            );
+          };
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/index-C2tKzmWZ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Byrlne2h.css">
+    <script type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
+    <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
+  </head>
+  <body class="bg-[#e9eef6] text-[#172b4d] select-none overscroll-none">
+    <div id="root"></div>
+    <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+    <script nomodule crossorigin id="vite-legacy-polyfill" src="./assets/polyfills-legacy-ByYzurFH.js"></script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="./assets/index-legacy-D_XQMkzF.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+  </body>
+</html>

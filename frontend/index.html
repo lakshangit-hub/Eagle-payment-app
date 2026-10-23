@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Eagle Credit — Field Collection</title>
+    <!-- Polyfill for crypto.randomUUID on Android 7 (Chrome 53 WebView) -->
+    <script>
+      if (typeof window !== 'undefined') {
+        if (!window.crypto) {
+          window.crypto = {};
+        }
+        if (!window.crypto.randomUUID) {
+          window.crypto.randomUUID = function() {
+            var bytes = new Uint8Array(16);
+            if (window.crypto.getRandomValues) {
+              window.crypto.getRandomValues(bytes);
+            } else {
+              for (var i = 0; i < 16; i++) {
+                bytes[i] = Math.floor(Math.random() * 256);
+              }
+            }
+            bytes[6] = (bytes[6] & 0x0f) | 0x40; // Version 4
+            bytes[8] = (bytes[8] & 0x3f) | 0x80; // Variant 10
+            var hex = [];
+            for (var j = 0; j < 16; j++) {
+              hex.push((bytes[j] < 16 ? '0' : '') + bytes[j].toString(16));
+            }
+            return (
+              hex.slice(0, 4).join('') + '-' +
+              hex.slice(4, 6).join('') + '-' +
+              hex.slice(6, 8).join('') + '-' +
+              hex.slice(8, 10).join('') + '-' +
+              hex.slice(10, 16).join('')
+            );
+          };
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-[#e9eef6] text-[#172b4d] select-none overscroll-none">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

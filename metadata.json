@@ -1,0 +1,6 @@
+{
+  "name": "Eagle Credit",
+  "description": "Eagle Credit field-collection mobile POS app for Sunmi V2 with offline payment handling, secure storage, and 58mm receipt printing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
